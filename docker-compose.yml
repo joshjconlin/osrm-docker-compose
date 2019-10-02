@@ -17,5 +17,7 @@ services:
     image: osrm/osrm-frontend:latest
     ports:
       - "9966:9966"
+    links:
+      - backend
     depends_on:
       - backend
