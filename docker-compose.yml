@@ -1,16 +1,21 @@
-version: '2'
+version: "3"
 services:
+  data:
+    container_name: osrm-data
+    build: ./data
+    volumes:
+      - ./build:/data
   backend:
+    container_name: osrm-backend
     build: ./backend
     ports:
       - "5000:5000"
     volumes:
-      - ./backend:/usr/src/app/backend
+      - ./build:/data
   frontend:
+    container_name: osrm_frontend
     image: osrm/osrm-frontend:latest
     ports:
       - "9966:9966"
-    links:
-      - backend
     depends_on:
       - backend
