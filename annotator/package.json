@@ -1,0 +1,14 @@
+{
+  "name": "annotator",
+  "version": "1.0.0",
+  "description": "parse traffic into osrm ids",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Josh Conlin",
+  "license": "ISC",
+  "dependencies": {
+    "@mapbox/route-annotator": "0.2.4"
+  }
+}
