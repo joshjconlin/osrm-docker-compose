@@ -5,28 +5,26 @@ const data = "47.46284,-122.25853 47.4631,-122.25928 47.46323,-122.25973 47.4633
 
 const parsedCoordinates = data.split(' ').filter(val => val && val !== ' ').map((val => [...(val.split(',').map(v => parseFloat(v)))]));
 
-console.warn(parsedCoordinates, 'ccords');
-
 const results = [];
 
 //// Do the same thing, but this time use coordinates instead
 // // of node ids.  Internally, a radius search finds the closest
 // // node within 5m
-taglookup.loadOSMExtract(path.join(__dirname,'../build/washington-latest.osm.pbf'), (err) => {
+taglookup.loadOSMExtract(path.join(__dirname,'./washington-latest.osm.pbf'), (err) => {
   if (err) throw err;
-    taglookup.annotateRouteFromLonLats(parsedCoordinates, (err, tags) => {
-
+    taglookup.annotateRouteFromLonLats(parsedCoordinates, (err, wayIds) => {
         if (err) {
             console.warn('err', err);
         } else {
-            results.push(tags);
+            taglookup.getAllTagsForWayId(wayIds[0], (err, tags) => {
+                if (err) {
+                    console.warn(('second err'))
+                } else {
+                    results.push(tags);
+                    console.warn(results, 'results');
+                }
+            })
         }
     })
-// todo:
-  //   annotator.getAllTagsForWayId(wayIds[0], (err, tags) => {
-  //     if (err) throw err;
-  //     console.log(tags);
-  //   });
-  // });
 });
 

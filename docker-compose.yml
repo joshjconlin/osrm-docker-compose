@@ -21,3 +21,8 @@ services:
       - backend
     depends_on:
       - backend
+  annotator:
+    container_name: annotator
+    build: ./annotator
+    ports:
+      - "5050:5050"
