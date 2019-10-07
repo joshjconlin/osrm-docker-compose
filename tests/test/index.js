@@ -3,6 +3,8 @@ const axios = require('axios');
 
 // Seattle
 
+// Hawaii
+
 const seattlePairs = [
     [[47.6015953, -122.3344915], [47.6259655, -122.3390394]],
     [[47.6248211, -122.3471621], [47.6162967, -122.3437804]],
@@ -31,11 +33,11 @@ const seattlePairs = [
     [[47.6108756, -122.3164212], [47.6144260, -122.3190610]]
 ];
 
-describe('It routes bad points', function () {
+describe('It routes bad seattle points', function () {
    describe('Routing', function () {
        seattlePairs.forEach((pair) => {
           const [[lat1, lon1], [lat2, lon2]] = pair;
-          it('gets a valid route response', async function () {
+          it('gets a valid route response for seattle', async function () {
               const response = await axios.get(`http://localhost:5000/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false&alternatives=true&steps=true&hints=;`, {
                   headers: {
                       'Allow-Access-Origin': '*'
